@@ -34,10 +34,10 @@ test-backend:
 	cd $(BACKEND_DIR) && uv run pytest
 
 test-frontend:
-	cd $(FRONTEND_DIR) && bun test
+	bun test
 
 lint:
-	cd $(FRONTEND_DIR) && bun run check
+	$(FRONTEND_DIR)/node_modules/.bin/biome check .
 
 format:
-	cd $(FRONTEND_DIR) && bun run format
+	$(FRONTEND_DIR)/node_modules/.bin/biome check --write .

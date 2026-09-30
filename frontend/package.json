@@ -6,8 +6,8 @@
     "build": "next build",
     "start": "next start",
     "test": "bun test",
-    "check": "biome check .",
-    "format": "biome check --write ."
+    "check": "biome check ..",
+    "format": "biome check --write .."
   },
   "dependencies": {
     "next": "^15.5.4",
