@@ -1,11 +1,11 @@
 from datetime import date
 from decimal import Decimal
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel, Field
 
 
-class AccountType(str, Enum):
+class AccountType(StrEnum):
     asset = "asset"
     liability = "liability"
     equity = "equity"
@@ -13,7 +13,7 @@ class AccountType(str, Enum):
     expense = "expense"
 
 
-class AccountSubtype(str, Enum):
+class AccountSubtype(StrEnum):
     operating_revenue = "operating_revenue"
     contra_revenue = "contra_revenue"
     cogs = "cogs"

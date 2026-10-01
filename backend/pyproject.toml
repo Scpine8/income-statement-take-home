@@ -11,9 +11,41 @@ dependencies = [
 [dependency-groups]
 dev = [
     "httpx2>=2.13.1",
+    "pyright>=1.1.414",
     "pytest>=8",
+    "ruff>=0.16.9",
 ]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort (import sorting)
+    "B",    # flake8-bugbear
+    "UP",   # pyupgrade
+]
+ignore = [
+    "B008",  # do not perform function calls in argument defaults (standard for FastAPI Query/Depends)
+    "E501",  # line too long (handled by ruff format)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pyright]
+include = ["app", "tests"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+

@@ -104,8 +104,12 @@ def test_activity_signs():
     cash = next(a for a in LEDGER.accounts if a.number == "1000")
     assert revenue.type == AccountType.revenue
     assert expense.subtype == AccountSubtype.cogs
-    assert activity_for_account(revenue, Decimal("0"), Decimal("10.00")) == Decimal("10.00")
-    assert activity_for_account(expense, Decimal("10.00"), Decimal("0")) == Decimal("10.00")
+    assert activity_for_account(revenue, Decimal("0"), Decimal("10.00")) == Decimal(
+        "10.00"
+    )
+    assert activity_for_account(expense, Decimal("10.00"), Decimal("0")) == Decimal(
+        "10.00"
+    )
     assert activity_for_account(cash, Decimal("10.00"), Decimal("0")) is None
 
 
@@ -113,5 +117,7 @@ def test_http_rejects_inverted_range():
     from app.main import app
 
     client = TestClient(app)
-    response = client.get("/income-statement", params={"start": "2026-03-31", "end": "2026-01-01"})
+    response = client.get(
+        "/income-statement", params={"start": "2026-03-31", "end": "2026-01-01"}
+    )
     assert response.status_code == 400

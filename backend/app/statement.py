@@ -21,7 +21,9 @@ def format_money(amount: Decimal) -> str:
     return f"{amount.quantize(CENTS)}"
 
 
-def activity_for_account(account: Account, debit: Decimal, credit: Decimal) -> Decimal | None:
+def activity_for_account(
+    account: Account, debit: Decimal, credit: Decimal
+) -> Decimal | None:
     """Return signed P&L activity for one journal line, or None if off-statement."""
     if account.subtype == AccountSubtype.balance_sheet:
         return None
@@ -46,7 +48,9 @@ def _lines_and_total(
         if amount == 0:
             continue
         lines.append(
-            StatementLine(number=account.number, name=account.name, amount=format_money(amount))
+            StatementLine(
+                number=account.number, name=account.name, amount=format_money(amount)
+            )
         )
         total += amount
     return lines, total
